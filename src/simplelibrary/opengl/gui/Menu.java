@@ -45,7 +45,7 @@ public abstract class Menu extends Renderer2D{
         }
         if(tooltipShowing){
             boolean hasMouseover = false;
-            for(MenuComponent c : components){
+            for(MenuComponent c : getAllComponents()){
                 if(c.isMouseOver&&c.getTooltip()!=null){
                     hasMouseover = true;
                     break;
@@ -60,7 +60,7 @@ public abstract class Menu extends Renderer2D{
         }else{
             if(!mouseMoving){
                 boolean hasMouseover = false;
-                for(MenuComponent c : components){
+                for(MenuComponent c : getAllComponents()){
                     if(c.isMouseOver&&c.getTooltip()!=null){
                         hasMouseover = true;
                         break;
@@ -103,7 +103,7 @@ public abstract class Menu extends Renderer2D{
     }
     public void renderForeground(){
         if(tooltipShowing){
-            for(MenuComponent c : components){
+            for(MenuComponent c : getAllComponents()){
                 if(c.isMouseOver&&c.getTooltip()!=null){
                     renderTooltip(c);
                     break;
@@ -220,5 +220,15 @@ public abstract class Menu extends Renderer2D{
             }
         }
         return false;
+    }
+    /**
+     * @return A list containing every component on this menu, including subcomponents
+     */
+    public ArrayList<MenuComponent> getAllComponents(){
+        ArrayList<MenuComponent> comps = new ArrayList<>(components);
+        for(MenuComponent c : components){
+            comps.addAll(c.getAllComponents());
+        }
+        return comps;
     }
 }
