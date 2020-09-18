@@ -46,6 +46,9 @@ public abstract class MenuComponent extends Menu{
      * The Y location of the component, in GL coordinates
      */
     public double y;
+    public Color tooltipBackgroundColor = Color.WHITE;
+    public Color tooltipTextColor = Color.black;
+    public Color tooltipBorderColor = Color.black;
     /**
      * Creates a new component.  Note:  This is an abstract class.
      * @param x The X location, in GL coordinates
@@ -177,5 +180,14 @@ public abstract class MenuComponent extends Menu{
     }
     public void onSelected() {
         isSelected = true;
+    }
+    public String getTooltip(){
+        return null;
+    }
+    public double getTooltipOffsetX(){
+        return 0;
+    }
+    public double getTooltipOffsetY(){
+        return height;
     }
 }

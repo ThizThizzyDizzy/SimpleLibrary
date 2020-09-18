@@ -38,7 +38,7 @@ public class MenuComponentTextBox extends MenuComponent{
     }
     @Override
     public void onCharTyped(char c) {
-        if(!Character.isWhitespace(c)&&editable)text+=c;
+        if(editable)text+=c;
     }
     @Override
     public void keyEvent(int key, int scancode, boolean isPress, boolean isRepeat, int modifiers) {

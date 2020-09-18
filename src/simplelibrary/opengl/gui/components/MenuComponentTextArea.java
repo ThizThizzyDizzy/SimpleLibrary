@@ -56,6 +56,6 @@ public class MenuComponentTextArea extends MenuComponent{
     }
     @Override
     public void onCharTyped(char c) {
-        if(!Character.isWhitespace(c)&&editable) text.set(text.size()-1, text.get(text.size()-1)+c);
+        if(editable) text.set(text.size()-1, text.get(text.size()-1)+c);
     }
 }
