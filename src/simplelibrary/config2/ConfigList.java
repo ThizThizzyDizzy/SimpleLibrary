@@ -76,6 +76,39 @@ public class ConfigList extends ConfigBase{
         if(index>=size()||index<0) return null;
         else return (V)lst.get(index).getData();
     }
+    public Config getConfig(int index){
+        return get(index);
+    }
+    public String getString(int index){
+        return get(index);
+    }
+    public int getInt(int index){
+        return get(index);
+    }
+    public boolean getBoolean(int index){
+        return get(index);
+    }
+    public float getFloat(int index){
+        return get(index);
+    }
+    public long getLong(int index){
+        return get(index);
+    }
+    public double getDouble(int index){
+        return get(index);
+    }
+    public byte getByte(int index){
+        return get(index);
+    }
+    public short getShort(int index){
+        return get(index);
+    }
+    public ConfigNumberList getConfigNumberList(int index){
+        return get(index);
+    }
+    public ConfigList getConfigList(int index){
+        return get(index);
+    }
     public <V> Collection<V> copyTo(Collection<V> lst){
         for(V v : this.<V>iterable()){
             lst.add(v);
@@ -148,7 +181,16 @@ public class ConfigList extends ConfigBase{
     public void add(double value){
         doAdd(new ConfigDouble(value));
     }
+    public void add(byte value){
+        doAdd(new ConfigByte(value));
+    }
+    public void add(short value){
+        doAdd(new ConfigShort(value));
+    }
     public void add(ConfigList value){
+        doAdd(value);
+    }
+    public void add(ConfigNumberList value){
         doAdd(value);
     }
     public void add(Object value){
@@ -167,8 +209,14 @@ public class ConfigList extends ConfigBase{
             add((long)value);
         }else if(value instanceof Double){
             add((double)value);
+        }else if(value instanceof Byte){
+            add((byte)value);
+        }else if(value instanceof Short){
+            add((short)value);
         }else if(value instanceof ConfigList){
             add((ConfigList)value);
+        }else if(value instanceof ConfigNumberList){
+            add((ConfigNumberList)value);
         }
     }
     private void doAdd(ConfigBase b){

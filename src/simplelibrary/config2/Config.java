@@ -238,6 +238,72 @@ public class Config extends ConfigBase implements Cloneable{
             return (V)data.get(key).getData();
         }
     }
+    public Config getConfig(String key){
+        return get(key);
+    }
+    public String getString(String key){
+        return get(key);
+    }
+    public int getInt(String key){
+        return get(key);
+    }
+    public boolean getBoolean(String key){
+        return get(key);
+    }
+    public float getFloat(String key){
+        return get(key);
+    }
+    public long getLong(String key){
+        return get(key);
+    }
+    public double getDouble(String key){
+        return get(key);
+    }
+    public byte getByte(String key){
+        return get(key);
+    }
+    public short getShort(String key){
+        return get(key);
+    }
+    public ConfigNumberList getConfigNumberList(String key){
+        return get(key);
+    }
+    public ConfigList getConfigList(String key){
+        return get(key);
+    }
+    public Config getConfig(String key, Config defaultValue){
+        return get(key, defaultValue);
+    }
+    public String getString(String key, String defaultValue){
+        return get(key, defaultValue);
+    }
+    public int getInt(String key, int defaultValue){
+        return get(key, defaultValue);
+    }
+    public boolean getBoolean(String key, boolean defaultValue){
+        return get(key, defaultValue);
+    }
+    public float getFloat(String key, float defaultValue){
+        return get(key, defaultValue);
+    }
+    public long getLong(String key, long defaultValue){
+        return get(key, defaultValue);
+    }
+    public double getDouble(String key, double defaultValue){
+        return get(key, defaultValue);
+    }
+    public byte getByte(String key, byte defaultValue){
+        return get(key, defaultValue);
+    }
+    public short getShort(String key, short defaultValue){
+        return get(key, defaultValue);
+    }
+    public ConfigNumberList getConfigNumberList(String key, ConfigNumberList defaultValue){
+        return get(key, defaultValue);
+    }
+    public ConfigList getConfigList(String key, ConfigList defaultValue){
+        return get(key, defaultValue);
+    }
     public String[] properties(){
         return keys.toArray(new String[keys.size()]);
     }
