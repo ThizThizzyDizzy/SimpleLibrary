@@ -1,14 +1,5 @@
 package simplelibrary.opengl.gui.components;
-import java.awt.Color;
-import java.awt.Component;
-import java.util.ArrayList;
 import java.util.logging.Logger;
-import org.lwjgl.opengl.GL11;
-import simplelibrary.Sys;
-import simplelibrary.error.ErrorCategory;
-import simplelibrary.error.ErrorLevel;
-import simplelibrary.game.GameHelper;
-import simplelibrary.opengl.ImageStash;
 public class MenuComponentList extends MenuComponentScrollable{
     private static final Logger LOG = Logger.getLogger(MenuComponentList.class.getName());
     private MenuComponent selectedComponent;

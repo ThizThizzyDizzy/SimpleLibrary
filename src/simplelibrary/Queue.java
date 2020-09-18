@@ -5,7 +5,6 @@ import java.util.Spliterator;
 import java.util.Spliterators;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-import simplelibrary.net.packet.Packet;
 public class Queue<T> implements Iterable<T>{
     protected QueueEntry head;
     protected QueueEntry tail;

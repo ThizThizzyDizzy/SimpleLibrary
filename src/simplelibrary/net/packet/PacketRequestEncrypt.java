@@ -4,8 +4,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.encryption.Encryption.ReadyEncryption;
 import simplelibrary.encryption.Encryption.ReadyLayeredEncryption;

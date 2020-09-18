@@ -4,7 +4,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
 import simplelibrary.config2.Config;
-import simplelibrary.net.authentication.Authenticator;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.encryption.EncryptionOutputStream;
 public class PacketAuthentication extends PacketConfig {

@@ -1,6 +1,5 @@
 package simplelibrary.opengl.gui.components;
 import java.util.logging.Logger;
-import org.lwjgl.opengl.GL11;
 import simplelibrary.opengl.ImageStash;
 public class MenuComponentProgressBar extends MenuComponent{
     private static final Logger LOG = Logger.getLogger(MenuComponentProgressBar.class.getName());

@@ -1,7 +1,4 @@
 package simplelibrary.net.packet;
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
 import java.util.logging.Logger;
 public class PacketEncryptionSupported extends PacketString{
     private static PacketEncryptionSupported baseInstance;

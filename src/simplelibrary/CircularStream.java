@@ -1,9 +1,6 @@
 package simplelibrary;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.nio.ByteBuffer;
 public class CircularStream extends OutputStream{
     private byte[] buffer;
     private int dataStart = 0;//First valid byte

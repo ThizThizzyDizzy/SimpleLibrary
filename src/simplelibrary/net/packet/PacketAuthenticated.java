@@ -3,7 +3,6 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.util.logging.Logger;
-import simplelibrary.config2.Config;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.encryption.EncryptionOutputStream;
 import simplelibrary.net.authentication.Authentication;

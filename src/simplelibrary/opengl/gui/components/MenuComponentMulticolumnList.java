@@ -1,12 +1,5 @@
 package simplelibrary.opengl.gui.components;
-import java.util.ArrayList;
 import java.util.logging.Logger;
-import org.lwjgl.opengl.GL11;
-import simplelibrary.Sys;
-import simplelibrary.error.ErrorCategory;
-import simplelibrary.error.ErrorLevel;
-import simplelibrary.game.GameHelper;
-import simplelibrary.opengl.ImageStash;
 public class MenuComponentMulticolumnList extends MenuComponentScrollable{
     private static final Logger LOG = Logger.getLogger(MenuComponentMulticolumnList.class.getName());
     public double columnWidth;

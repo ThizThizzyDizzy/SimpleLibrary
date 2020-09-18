@@ -2,7 +2,6 @@ package simplelibrary.opengl.gui;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import static org.lwjgl.glfw.GLFW.*;
 import simplelibrary.game.GameHelper;
 import simplelibrary.opengl.ImageStash;
 import simplelibrary.opengl.Renderer2D;
