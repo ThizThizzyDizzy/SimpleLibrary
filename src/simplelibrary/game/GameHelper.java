@@ -719,4 +719,13 @@ public class GameHelper{
     public boolean isKeyDown(int key){
         return glfwGetKey(window, key)==GLFW_PRESS;
     }
+    /**
+     * Get the GLFW window ID
+     * @return the window ID
+     * @deprecated This should not be used unless it is the only option. Check other <code>GameHelper</code> functions first.
+     */
+    @Deprecated
+    public long getWindow(){
+        return window;
+    }
 }
