@@ -1,8 +1,5 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 public class MenuComponentList extends MenuComponentScrollable{
-    private static final Logger LOG = Logger.getLogger(MenuComponentList.class.getName());
-    private MenuComponent selectedComponent;
     public MenuComponentList(double x, double y, double width, double height){
         this(x, y, width, height, height/20);
     }
@@ -17,7 +14,6 @@ public class MenuComponentList extends MenuComponentScrollable{
     }
     @Override
     public void renderBackground() {
-        if(selected!=null) selectedComponent = selected;
         double y = 0;
         for (MenuComponent c : components) {
             c.x = 0;
@@ -28,10 +24,10 @@ public class MenuComponentList extends MenuComponentScrollable{
         super.renderBackground();
     }
     public int getSelectedIndex(){
-        return components.indexOf(selectedComponent);
+        return components.indexOf(selected);
     }
     public void setSelectedIndex(int index){
-        if(index<0||index>=components.size()) selectedComponent = null;
-        else selectedComponent = components.get(index);
+        if(index<0||index>=components.size()) selected = null;
+        else selected = components.get(index);
     }
 }

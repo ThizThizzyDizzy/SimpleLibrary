@@ -1,7 +1,6 @@
 package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.logging.Logger;
 /**
  * Used internally by the ConnectionManager subsystem to report an invalid datastream to the sending side.
  * THIS PACKET WILL BE LEFT IN INBOUND PACKET STREAM ON THE SENDING SIDE.
@@ -10,7 +9,6 @@ import java.util.logging.Logger;
  */
 public class PacketValidateDatastream implements Packet {
     private static PacketValidateDatastream baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketValidateDatastream.class.getName());
     public PacketValidateDatastream(){
         if(baseInstance==null){
             baseInstance = this;

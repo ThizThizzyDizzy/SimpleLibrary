@@ -2,11 +2,9 @@ package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 import simplelibrary.config2.Config;
 public class PacketConfig implements Packet{
     private static PacketConfig baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketConfig.class.getName());
     public Config value;
     public PacketConfig(){
         if(baseInstance==null){

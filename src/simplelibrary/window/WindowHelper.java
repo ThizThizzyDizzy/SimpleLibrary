@@ -8,7 +8,6 @@ import java.awt.Rectangle;
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.awt.event.WindowListener;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
@@ -16,7 +15,6 @@ import javax.swing.JPanel;
  * @author Bryan
  */
 public class WindowHelper{
-    private static final Logger LOG=Logger.getLogger(WindowHelper.class.getName());
     private static int[] lastValues = null;
 
     /**

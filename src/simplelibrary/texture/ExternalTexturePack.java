@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import simplelibrary.Sys;
@@ -15,7 +14,6 @@ import simplelibrary.error.ErrorLevel;
  * @author Bryan
  */
 public class ExternalTexturePack extends TexturePack {
-    private static final Logger LOG=Logger.getLogger(ExternalTexturePack.class.getName());
     private final File file;
     private final String name;
     private ZipFile zip;

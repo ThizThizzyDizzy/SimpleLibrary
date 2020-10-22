@@ -9,7 +9,6 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
@@ -34,7 +33,6 @@ public class ImageStash{
      * @since 1.5
      */
     public static final ImageStash instance = new ImageStash();
-    private static final Logger LOG = Logger.getLogger(ImageStash.class.getName());
     private final HashMap<String, Integer> textureMap = new HashMap<>();
     private final ArrayList<Integer> textureNameList = new ArrayList<>();
     private final IntBuffer singleIntBuffer = createDirectIntBuffer(1);

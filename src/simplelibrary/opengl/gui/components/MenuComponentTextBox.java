@@ -1,5 +1,4 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
@@ -10,7 +9,6 @@ import simplelibrary.opengl.ImageStash;
  * @author Bryan
  */
 public class MenuComponentTextBox extends MenuComponent{
-    private static final Logger LOG=Logger.getLogger(MenuComponentTextBox.class.getName());
     /**
      * whether or not the text in the text box can be edited by the user
      */

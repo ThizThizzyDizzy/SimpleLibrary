@@ -1,8 +1,6 @@
 package simplelibrary.net.packet;
-import java.util.logging.Logger;
 public class PacketEncryptionNotSupported extends PacketString{
     private static PacketEncryptionNotSupported baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketEncryptionNotSupported.class.getName());
     public PacketEncryptionNotSupported(){
         if(baseInstance==null){
             baseInstance = this;

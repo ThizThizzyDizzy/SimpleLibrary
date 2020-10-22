@@ -3,12 +3,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
 import simplelibrary.opengl.ImageStash;
 public class MenuComponentButton extends MenuComponent implements ActionListener{
-    private static final Logger LOG = Logger.getLogger(MenuComponentButton.class.getName());
     public String label;
     public boolean enabled;
     public boolean isPressed;

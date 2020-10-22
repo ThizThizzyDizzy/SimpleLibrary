@@ -2,10 +2,8 @@ package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 public class PacketPingTest implements Packet{
     private static PacketPingTest baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketPingTest.class.getName());
     long nanos = 0;
     boolean reflected = false;
     public PacketPingTest(){

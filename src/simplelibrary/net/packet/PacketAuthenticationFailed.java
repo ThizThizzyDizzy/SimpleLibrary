@@ -1,10 +1,8 @@
 package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.logging.Logger;
 public class PacketAuthenticationFailed implements Packet {
     private static PacketAuthenticationFailed baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketAuthenticationFailed.class.getName());
     public PacketAuthenticationFailed(){
         if(baseInstance==null){
             baseInstance = this;

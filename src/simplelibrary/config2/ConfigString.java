@@ -2,9 +2,7 @@ package simplelibrary.config2;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 class ConfigString extends ConfigBase{
-    private static final Logger LOG = Logger.getLogger(ConfigString.class.getName());
     private String data;
     ConfigString(){}
     ConfigString(String data){

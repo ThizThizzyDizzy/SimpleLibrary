@@ -1,10 +1,8 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
 import simplelibrary.opengl.ImageStash;
 public class MenuComponentSlider extends MenuComponent{
-    private static final Logger LOG = Logger.getLogger(MenuComponentSlider.class.getName());
     public boolean enabled;
     public double textInset = -1;
     public double minimum;

@@ -1,12 +1,10 @@
 package simplelibrary.texture;
 import java.io.InputStream;
-import java.util.logging.Logger;
 /**
  * An internal texture pack.  Draws resources from the application classpath.
  * @author Bryan
  */
 public class TexturePack {
-    private static final Logger LOG=Logger.getLogger(TexturePack.class.getName());
     TexturePackManager manager;
     /**
      * Closes any files opened by the texturepack.

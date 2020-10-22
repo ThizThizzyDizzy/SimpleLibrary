@@ -2,13 +2,11 @@ package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.encryption.EncryptionOutputStream;
 import simplelibrary.net.authentication.Authentication;
 public class PacketAuthenticated implements Packet {
     private static PacketAuthenticated baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketAuthenticated.class.getName());
     private Authentication auth;
     public PacketAuthenticated(){
         if(baseInstance==null){

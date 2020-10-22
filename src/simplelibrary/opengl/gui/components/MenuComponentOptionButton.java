@@ -1,10 +1,8 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
 import simplelibrary.opengl.ImageStash;
 public class MenuComponentOptionButton extends MenuComponent{
-    private static final Logger LOG = Logger.getLogger(MenuComponentOptionButton.class.getName());
     public final String label;
     public boolean enabled;
     public int startingIndex;

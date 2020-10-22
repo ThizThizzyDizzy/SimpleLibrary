@@ -2,7 +2,6 @@ package simplelibrary.texture;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 /**
  * An automatic texture pack management system
  * @author Bryan
@@ -16,7 +15,6 @@ public class TexturePackManager{
      * @since 1.5
      */
     public static TexturePackManager instance;
-    private static final Logger LOG=Logger.getLogger(TexturePackManager.class.getName());
     /**
      * The current texture pack
      *

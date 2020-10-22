@@ -1,12 +1,10 @@
 package simplelibrary.opengl.gui.components;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Logger;
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
 public class MenuComponentTextArea extends MenuComponent{
-    private static final Logger LOG = Logger.getLogger(MenuComponentTextArea.class.getName());
     public ArrayList<String> text;
     protected double textHeight;
     public boolean editable;

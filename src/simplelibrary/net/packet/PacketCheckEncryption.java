@@ -1,8 +1,6 @@
 package simplelibrary.net.packet;
-import java.util.logging.Logger;
 public class PacketCheckEncryption extends PacketString{
     private static PacketCheckEncryption baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketCheckEncryption.class.getName());
     public PacketCheckEncryption(){
         if(baseInstance==null){
             baseInstance = this;

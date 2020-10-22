@@ -2,7 +2,6 @@ package simplelibrary.opengl.gui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import org.lwjgl.glfw.GLFW;
 import simplelibrary.Queue;
 import simplelibrary.Sys;
@@ -14,7 +13,6 @@ import simplelibrary.game.GameHelper;
  * @author Bryan
  */
 public class GUI{
-    private static final Logger LOG=Logger.getLogger(GUI.class.getName());
     /**
      * The GameHelper that this GUI is running on
      */

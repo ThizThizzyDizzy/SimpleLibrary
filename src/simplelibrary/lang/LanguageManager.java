@@ -2,7 +2,6 @@ package simplelibrary.lang;
 import java.io.File;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 import simplelibrary.Sys;
 import simplelibrary.config.Config;
 import simplelibrary.error.ErrorCategory;
@@ -14,7 +13,6 @@ import simplelibrary.error.ErrorLevel;
 public class LanguageManager{
     private static final ArrayList<Config> languages = new ArrayList<>();
     private static Config currentLanguage;
-    private static final Logger LOG = Logger.getLogger(LanguageManager.class.getName());
     public static void addLanguage(File language){
         addLanguage(Config.loadConfig(language));
     };
@@ -30,7 +28,7 @@ public class LanguageManager{
     }
     public static void addLanguage(Config language){
         if(!language.hasProperty("LanguageInfo.name")&&language.getFile()==null){
-            throw new IllegalArgumentException("Config must iether have the key 'LanguageInfo.name' defined in it or have a file attached!");
+            throw new IllegalArgumentException("Config must either have the key 'LanguageInfo.name' defined in it or have a file attached!");
         }
         boolean has = language.hasProperty("LanguageInfo.name");
         if(language.getFile()!=null){

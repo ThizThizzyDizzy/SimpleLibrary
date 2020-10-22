@@ -1,10 +1,8 @@
 package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.logging.Logger;
 public class PacketPing implements Packet {
     private static PacketPing baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketPing.class.getName());
     public PacketPing(){
         if(baseInstance==null){
             baseInstance = this;

@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.GregorianCalendar;
 import java.util.Random;
-import java.util.logging.Logger;
 import simplelibrary.config.Config;
 import simplelibrary.error.ErrorAdapter;
 import simplelibrary.error.ErrorCategory;
@@ -33,7 +32,6 @@ public class Sys{
      */
     public static ArrayList<String> generatedStrings = new ArrayList<>();
     private static ArrayList<String> generatedPasskeys = new ArrayList<>();
-    private static final Logger LOG=Logger.getLogger(Sys.class.getName());
     static ErrorHandler handler;
     private static boolean initialized;
     static boolean log = true;

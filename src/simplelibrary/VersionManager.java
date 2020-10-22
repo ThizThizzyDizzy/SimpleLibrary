@@ -1,13 +1,11 @@
 package simplelibrary;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 /**
  * A version manager class, created to make version management easy.
  * @author Bryan Dolan
  * @since 8.3
  */
 public class VersionManager{
-    private static final Logger LOG = Logger.getLogger(VersionManager.class.getName());
     /**
      * The current version (This version)
      * @since 8.3

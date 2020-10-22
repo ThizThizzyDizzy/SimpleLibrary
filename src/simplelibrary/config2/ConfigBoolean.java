@@ -2,9 +2,7 @@ package simplelibrary.config2;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 class ConfigBoolean extends ConfigBase{
-    private static final Logger LOG = Logger.getLogger(ConfigBoolean.class.getName());
     private boolean data;
     ConfigBoolean(boolean value){
         data = value;

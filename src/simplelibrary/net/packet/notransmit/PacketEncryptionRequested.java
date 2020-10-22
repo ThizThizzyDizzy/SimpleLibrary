@@ -2,7 +2,6 @@ package simplelibrary.net.packet.notransmit;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.net.ConnectionManager;
 import simplelibrary.net.packet.Packet;
@@ -11,7 +10,6 @@ import simplelibrary.net.packet.Packet;
  * @author Bryan
  */
 public class PacketEncryptionRequested implements Packet{
-    private static final Logger LOG = Logger.getLogger(PacketEncryptionRequested.class.getName());
     private ConnectionManager connection;
     private Encryption.ReadyEncryption encryption;
     public PacketEncryptionRequested(ConnectionManager connection, Encryption.ReadyEncryption re) {

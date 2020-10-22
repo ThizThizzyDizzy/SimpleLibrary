@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import simplelibrary.Sys;
 import simplelibrary.config.Config;
@@ -22,7 +21,6 @@ public class FontManager {
     private static int[] currentCharLengths = new int[0x1_0000];
     private static int currentCharHeight;
     private static String currentFontType;
-    private static final Logger LOG = Logger.getLogger(FontManager.class.getName());
     public static BufferedImage generateFontTexture(boolean full){
         if(full){
             BufferedImage img = new BufferedImage(8_192, 8_192, 6);

@@ -2,10 +2,8 @@ package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.logging.Logger;
 public class PacketString implements Packet{
     private static PacketString baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketString.class.getName());
     public String value;
     public PacketString(){
         if(baseInstance==null){

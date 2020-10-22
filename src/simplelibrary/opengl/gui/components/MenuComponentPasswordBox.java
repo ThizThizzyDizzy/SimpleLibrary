@@ -1,10 +1,8 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
 import simplelibrary.opengl.ImageStash;
 public class MenuComponentPasswordBox extends MenuComponentTextBox{
-    private static final Logger LOG = Logger.getLogger(MenuComponentPasswordBox.class.getName());
     public MenuComponentPasswordBox(double x, double y, double width, double height, String text, boolean editable){
         super(x, y, width, height, text, editable);
     }

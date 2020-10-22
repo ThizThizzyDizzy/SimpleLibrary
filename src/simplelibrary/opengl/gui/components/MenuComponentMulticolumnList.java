@@ -1,11 +1,8 @@
 package simplelibrary.opengl.gui.components;
-import java.util.logging.Logger;
 public class MenuComponentMulticolumnList extends MenuComponentScrollable{
-    private static final Logger LOG = Logger.getLogger(MenuComponentMulticolumnList.class.getName());
     public double columnWidth;
     public double rowHeight;
     public int columnCount;
-    private MenuComponent selectedComponent;
     public MenuComponentMulticolumnList(double x, double y, double width, double height, double columnWidth, double rowHeight){
         this(x, y, width, height, columnWidth, rowHeight, width/20);
     }
@@ -20,7 +17,6 @@ public class MenuComponentMulticolumnList extends MenuComponentScrollable{
     }
     @Override
     public void renderBackground() {
-        if(selected!=null) selectedComponent = selected;
         double width = this.width-(hasVertScrollbar()?vertScrollbarWidth:0);
         columnCount = Math.max(1, (int)((width-(width%columnWidth))/columnWidth));
         int column = 0;
@@ -39,10 +35,10 @@ public class MenuComponentMulticolumnList extends MenuComponentScrollable{
         return hasVertScrollbar();
     }
     public int getSelectedIndex(){
-        return components.indexOf(selectedComponent);
+        return components.indexOf(selected);
     }
     public void setSelectedIndex(int index){
-        if(index<0||index>=components.size()) selectedComponent = null;
-        else selectedComponent = components.get(index);
+        if(index<0||index>=components.size()) selected = null;
+        else selected = components.get(index);
     }
 }

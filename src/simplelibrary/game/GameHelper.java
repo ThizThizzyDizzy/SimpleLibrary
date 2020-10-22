@@ -2,7 +2,6 @@ package simplelibrary.game;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.util.logging.Logger;
 import static org.lwjgl.glfw.GLFW.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.GL;
@@ -220,7 +219,6 @@ public class GameHelper{
      * GUI is rendered in MODE_2D
      */
     public static final int MODE_HYBRID = 4;
-    private static final Logger LOG = Logger.getLogger(GameHelper.class.getName());
     private int height = 500;
     private int width = 800;
     private Method tickMethod;

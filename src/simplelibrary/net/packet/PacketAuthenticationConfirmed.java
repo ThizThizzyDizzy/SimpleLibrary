@@ -1,10 +1,8 @@
 package simplelibrary.net.packet;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
-import java.util.logging.Logger;
 public class PacketAuthenticationConfirmed implements Packet {
     private static PacketAuthenticationConfirmed baseInstance;
-    private static final Logger LOG = Logger.getLogger(PacketAuthenticationConfirmed.class.getName());
     public PacketAuthenticationConfirmed(){
         if(baseInstance==null){
             baseInstance = this;

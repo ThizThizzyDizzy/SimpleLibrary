@@ -21,7 +21,6 @@ import simplelibrary.error.ErrorLevel;
  * @author Bryan
  */
 public class Config{
-    private static final Logger LOG = Logger.getLogger(Config.class.getName());
     private final HashMap<String, String> map = new HashMap<>();
     /**
      * The file that is tied to this config

@@ -5,7 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
-import java.util.logging.Logger;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -22,7 +21,6 @@ import simplelibrary.error.ErrorLevel;
  */
 public class AudioManager{
     private static final HashMap<String, String> sounds = new HashMap<>();
-    private static final Logger LOG = Logger.getLogger(AudioManager.class.getName());
     /**
      * Gets the sound that has been bound by the specified name
      * @param name The name of the sound to be played
