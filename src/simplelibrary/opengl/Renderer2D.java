@@ -110,6 +110,38 @@ public abstract class Renderer2D{
         }
         return originalText.substring(text.length());
     }
+    public static String drawTextWithWordWrap(double leftEdge, double topEdge, double rightPossibleEdge, double bottomEdge, String text){
+        String[] words = text.split(" ");
+        String str = words[0];
+        double height = bottomEdge-topEdge;
+        double length = rightPossibleEdge-leftEdge;
+        for(int i = 1; i<words.length; i++){
+            String string = str+" "+words[i];
+            if(FontManager.getLengthForStringWithHeight(string.trim(), height)>=length){
+                drawTextWithWrap(leftEdge, topEdge, rightPossibleEdge, bottomEdge, str.trim());
+                return text.replaceFirst("\\Q"+str, "").trim();
+            }else{
+                str = string;
+            }
+        }
+        return drawTextWithWrap(leftEdge, topEdge, rightPossibleEdge, bottomEdge, text);
+    }
+    public static String drawTextWithWordWrapAndBounds(double leftEdge, double topEdge, double rightPossibleEdge, double bottomEdge, double minX, double minY, double maxX, double maxY, String text){
+        String[] words = text.split(" ");
+        String str = words[0];
+        double height = bottomEdge-topEdge;
+        double length = rightPossibleEdge-leftEdge;
+        for(int i = 1; i<words.length; i++){
+            String string = str+" "+words[i];
+            if(FontManager.getLengthForStringWithHeight(string.trim(), height)>=length){
+                drawTextWithWrapAndBounds(leftEdge, topEdge, rightPossibleEdge, bottomEdge, minX, minY, maxX, maxY, str.trim());
+                return text.replaceFirst("\\Q"+str, "").trim();
+            }else{
+                str = string;
+            }
+        }
+        return drawTextWithWrapAndBounds(leftEdge, topEdge, rightPossibleEdge, bottomEdge, minX, minY, maxX, maxY, text);
+    }
     public static boolean drawCenteredText(double leftPossibleEdge, double topEdge, double rightPossibleEdge, double bottomEdge, String text){
         boolean trimmed = false;
         double distanceForText = FontManager.getLengthForStringWithHeight(text, bottomEdge-topEdge);
@@ -197,6 +229,38 @@ public abstract class Renderer2D{
             skip+=(FontManager.getCharLength(character)*scale);
         }
         return originalText.substring(text.length());
+    }
+    public static String drawCenteredTextWithWordWrap(double leftPossibleEdge, double topEdge, double rightPossibleEdge, double bottomEdge, String text){
+        String[] words = text.split(" ");
+        String str = words[0];
+        double height = bottomEdge-topEdge;
+        double length = rightPossibleEdge-leftPossibleEdge;
+        for(int i = 1; i<words.length; i++){
+            String string = str+" "+words[i];
+            if(FontManager.getLengthForStringWithHeight(string.trim(), height)>=length){
+                drawCenteredTextWithWrap(leftPossibleEdge, topEdge, rightPossibleEdge, bottomEdge, str.trim());
+                return text.replaceFirst("\\Q"+str, "").trim();
+            }else{
+                str = string;
+            }
+        }
+        return drawCenteredTextWithWrap(leftPossibleEdge, topEdge, rightPossibleEdge, bottomEdge, text);
+    }
+    public static String drawCenteredTextWithWordWrapAndBounds(double leftPossibleEdge, double topEdge, double rightPossibleEdge, double bottomEdge, double minX, double minY, double maxX, double maxY, String text){
+        String[] words = text.split(" ");
+        String str = words[0];
+        double height = bottomEdge-topEdge;
+        double length = rightPossibleEdge-leftPossibleEdge;
+        for(int i = 1; i<words.length; i++){
+            String string = str+" "+words[i];
+            if(FontManager.getLengthForStringWithHeight(string.trim(), height)>=length){
+                drawCenteredTextWithWrapAndBounds(leftPossibleEdge, topEdge, rightPossibleEdge, bottomEdge, minX, minY, maxX, maxY, str.trim());
+                return text.replaceFirst("\\Q"+str, "").trim();
+            }else{
+                str = string;
+            }
+        }
+        return drawCenteredTextWithWrapAndBounds(leftPossibleEdge, topEdge, rightPossibleEdge, bottomEdge, minX, minY, maxX, maxY, text);
     }
     /**
      * Draws a rectangle at the specified location

@@ -1,7 +1,9 @@
 package simplelibrary.opengl;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.font.FontManager;
-
+import simplelibrary.opengl.model.Face;
+import simplelibrary.opengl.model.Model;
+import simplelibrary.opengl.model.Vector3f;
 public class Renderer3D{
     /**
      * Tests that the specified point is within the specified rectangle.
@@ -546,5 +548,105 @@ public class Renderer3D{
         GL11.glTexCoord2d(texLeft_, texBottom_);
         GL11.glVertex2d(left, bottom);
         GL11.glEnd();
+    }
+    public static void drawModel(Model model){
+        drawModel(model, 0, 0, 0);
+    }
+    public static void drawModel(Model model, double xRot, double yRot, double zRot){
+        if(model==null){
+            return;
+        }
+        GL11.glPushMatrix();
+        GL11.glTranslated(model.origin.x, model.origin.y, model.origin.z);
+        GL11.glRotated(yRot, 0, 1, 0);
+        GL11.glRotated(xRot, 1, 0, 0);
+        GL11.glRotated(zRot, 0, 0, 1);
+        int oldTexture = -1;
+        int oldPolygonSize = 0;
+        for(Face face : model.faces){
+            int texture = face.getTexture();
+            int polygonSize = face.verticies.size();
+            if(oldTexture!=texture||oldPolygonSize!=polygonSize){
+                if(oldTexture!=-1||oldPolygonSize!=polygonSize){
+                    GL11.glEnd();
+                }
+                ImageStash.instance.bindTexture(texture);
+                switch(polygonSize){
+                    case 4:
+                        GL11.glBegin(GL11.GL_QUADS);
+                        break;
+                    default:
+                        if(polygonSize<3){
+                            throw new UnsupportedOperationException("Cannot draw face with "+polygonSize+" vertecies!");
+                        }
+                    case 3:
+                        GL11.glBegin(GL11.GL_TRIANGLES);
+                        break;
+                }
+            }
+            if(face.colorOverride!=null){
+                GL11.glColor4d(face.colorOverride.getRed()/255d, face.colorOverride.getGreen()/255d, face.colorOverride.getBlue()/255d, 1);
+            }
+            oldTexture = texture;
+            oldPolygonSize = polygonSize;
+            if(polygonSize>4){
+                for(int i = 0; i < face.verticies.size()-2; i++){
+                    int vert1 = face.verticies.get(0);
+                    int vert2 = face.verticies.get(i+1);
+                    int vert3 = face.verticies.get(i+2);
+                    if(face.textureCoords.size()>0){
+                        float[] uv = model.textures.get(face.textureCoords.get(0)-1);
+                        GL11.glTexCoord2f(uv[0], -uv[1]);
+                    }
+                    if(face.normals.size()>0){
+                        Vector3f n = model.normals.get((int)face.normals.get(0)-1);
+                        GL11.glNormal3f(n.x, n.y, n.z);
+                    }
+                    Vector3f v = model.vertices.get(vert1 - 1);
+                    GL11.glVertex3f(v.x, v.y, v.z);
+                    if(face.textureCoords.size()>0){
+                        float[] uv = model.textures.get(face.textureCoords.get(i+1)-1);
+                        GL11.glTexCoord2f(uv[0], -uv[1]);
+                    }
+                    if(face.normals.size()>0){
+                        Vector3f n = model.normals.get((int)face.normals.get(i+1)-1);
+                        GL11.glNormal3f(n.x, n.y, n.z);
+                    }
+                    v = model.vertices.get(vert2 - 1);
+                    GL11.glVertex3f(v.x, v.y, v.z);
+                    if(face.textureCoords.size()>0){
+                        float[] uv = model.textures.get(face.textureCoords.get(i+2)-1);
+                        GL11.glTexCoord2f(uv[0], -uv[1]);
+                    }
+                    if(face.normals.size()>0){
+                        Vector3f n = model.normals.get((int)face.normals.get(i+2)-1);
+                        GL11.glNormal3f(n.x, n.y, n.z);
+                    }
+                    v = model.vertices.get(vert3 - 1);
+                    GL11.glVertex3f(v.x, v.y, v.z);
+                }
+            }else{
+                for(int i = 0; i < face.verticies.size(); i++){
+                    int vert = face.verticies.get(i);
+                    if(face.textureCoords.size()>0){
+                        float[] uv = model.textures.get(face.textureCoords.get(i)-1);
+                        GL11.glTexCoord2f(uv[0], -uv[1]);
+                    }
+                    if(face.normals.size()>0){
+                        Vector3f n = model.normals.get((int)face.normals.get(i)-1);
+                        GL11.glNormal3f(n.x, n.y, n.z);
+                    }
+                    Vector3f v = model.vertices.get(vert - 1);
+                    GL11.glVertex3f(v.x, v.y, v.z);
+                }
+            }
+        }
+        GL11.glEnd();
+        GL11.glRotated(-yRot, 0, 1, 0);
+        GL11.glRotated(-xRot, 1, 0, 0);
+        GL11.glRotated(-zRot, 0, 0, 1);
+        GL11.glTranslated(-model.origin.x, -model.origin.y, -model.origin.z);
+        GL11.glPopMatrix();
+        GL11.glColor4d(1, 1, 1, 1);
     }
 }
