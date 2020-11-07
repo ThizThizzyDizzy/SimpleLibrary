@@ -1,11 +1,9 @@
 package simplelibrary.opengl.model;
-import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Random;
 public class Model{
     public ArrayList<Face> faces = new ArrayList<>();
     public ArrayList<Line> lines = new ArrayList<>();
-    public ArrayList<Vector3f> vertices = new ArrayList<>();
+    public ArrayList<Vector3f> verticies = new ArrayList<>();
     public ArrayList<Vector3f> normals = new ArrayList<>();
     public ArrayList<float[]> textures = new ArrayList<>();
     public ArrayList<Material> materials = new ArrayList<>();
@@ -20,8 +18,8 @@ public class Model{
         for(Line l : m.lines){
             lines.add(new Line(l));
         }
-        for(Vector3f v : m.vertices){
-            vertices.add(new Vector3f(v));
+        for(Vector3f v : m.verticies){
+            verticies.add(new Vector3f(v));
         }
         for(Vector3f v : m.normals){
             normals.add(new Vector3f(v));
@@ -44,14 +42,9 @@ public class Model{
         }
         return null;
     }
-    public void randomizeColors(){
-        for(Face face : faces){
-            face.colorOverride = new Color(new Random().nextFloat(), new Random().nextFloat(), new Random().nextFloat());
-        }
-    }
     public void calculateDimensions(){
         double minX = 0, minY = 0, minZ = 0, maxX = 0, maxY = 0, maxZ = 0;
-        for(Vector3f v : vertices){
+        for(Vector3f v : verticies){
             minX = Math.min(v.x, minX);
             minY = Math.min(v.y, minY);
             minZ = Math.min(v.z, minZ);
@@ -71,5 +64,41 @@ public class Model{
     }
     public double getHeight(){
         return height;
+    }
+    public void add(Model m){
+        for(Face f : m.faces){
+            Face face = new Face(f);
+            for(int i = 0; i<face.normals.size(); i++){
+                face.normals.set(i, face.normals.get(i)+normals.size());
+            }
+            for(int i = 0; i<face.verticies.size(); i++){
+                face.verticies.set(i, face.verticies.get(i)+verticies.size());
+            }
+            for(int i = 0; i<face.textureCoords.size(); i++){
+                face.textureCoords.set(i, face.textureCoords.get(i)+textures.size());
+            }
+            faces.add(face);
+        }
+        for(Line l : m.lines){
+            Line line = new Line(l);
+            for(int i = 0; i<line.verticies.size(); i++){
+                line.verticies.set(i, line.verticies.get(i)+verticies.size());
+            }
+            lines.add(new Line(l));
+        }
+        for(Vector3f v : m.verticies){
+            verticies.add(new Vector3f(v));
+        }
+        for(Vector3f v : m.normals){
+            normals.add(new Vector3f(v));
+        }
+        for(float[] f : m.textures){
+            float[] fl = new float[f.length];
+            for(int i = 0; i<f.length; i++){
+                fl[i] = f[i];
+            }
+            textures.add(fl);
+        }
+        materials.addAll(m.materials);
     }
 }

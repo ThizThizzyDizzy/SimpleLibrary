@@ -37,8 +37,8 @@ public class OBJLoader implements ModelLoader{
                     float x = Float.valueOf(line.split(" ")[1]);
                     float y = Float.valueOf(line.split(" ")[2]);
                     float z = Float.valueOf(line.split(" ")[3]);
-                    m.vertices.add(new Vector3f(x,y,z));
-                    loneVerticies.add(m.vertices.get(m.vertices.size()-1));
+                    m.verticies.add(new Vector3f(x,y,z));
+                    loneVerticies.add(m.verticies.get(m.verticies.size()-1));
                     expectArgs("OBJ", line, 3);
                 }else if(line.startsWith("vn ")){
                     float x = Float.valueOf(line.split(" ")[1]);
@@ -75,7 +75,7 @@ public class OBJLoader implements ModelLoader{
                         }
                     }
                     for(Integer i : verticies){
-                        loneVerticies.remove(m.vertices.get(i-1));
+                        loneVerticies.remove(m.verticies.get(i-1));
                     }
                     if(verticies.size()>4){
                         m.hasNGons = true;
@@ -90,7 +90,7 @@ public class OBJLoader implements ModelLoader{
         }
         if(loneVerticies.size()==1){
             m.origin = new Vector3f(loneVerticies.get(0));
-            for(Vector3f v : m.vertices){
+            for(Vector3f v : m.verticies){
                 v.x-=m.origin.x;
                 v.y-=m.origin.y;
                 v.z-=m.origin.z;

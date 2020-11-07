@@ -8,9 +8,9 @@ public class Face {
     public final Material material;
     public Color colorOverride = null;
     public Face(ArrayList<Integer> verticies, ArrayList<Integer> textureCoords, ArrayList<Integer> normals, Material material){
-        this.verticies = verticies;
-        this.textureCoords = textureCoords;
-        this.normals = normals;
+        this.verticies = new ArrayList<>(verticies);
+        this.textureCoords = new ArrayList<>(textureCoords);
+        this.normals = new ArrayList<>(normals);
         this.material = material;
     }
     public Face(Face f){

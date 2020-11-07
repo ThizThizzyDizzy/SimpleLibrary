@@ -49,7 +49,7 @@ public abstract class MenuComponent extends Menu{
     public Color tooltipBackgroundColor = Color.WHITE;
     public Color tooltipTextColor = Color.black;
     public Color tooltipBorderColor = Color.black;
-    private String tooltip;
+    public String tooltip;
     /**
      * Creates a new component.  Note:  This is an abstract class.
      * @param x The X location, in GL coordinates
@@ -185,8 +185,9 @@ public abstract class MenuComponent extends Menu{
     public String getTooltip(){
         return tooltip;
     }
-    public void setTooltip(String tooltip){
+    public MenuComponent setTooltip(String tooltip){
         this.tooltip = tooltip;
+        return this;
     }
     public double getTooltipOffsetX(){
         return 0;

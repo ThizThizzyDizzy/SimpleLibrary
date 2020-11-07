@@ -602,7 +602,7 @@ public class Renderer3D{
                         Vector3f n = model.normals.get((int)face.normals.get(0)-1);
                         GL11.glNormal3f(n.x, n.y, n.z);
                     }
-                    Vector3f v = model.vertices.get(vert1 - 1);
+                    Vector3f v = model.verticies.get(vert1 - 1);
                     GL11.glVertex3f(v.x, v.y, v.z);
                     if(face.textureCoords.size()>0){
                         float[] uv = model.textures.get(face.textureCoords.get(i+1)-1);
@@ -612,7 +612,7 @@ public class Renderer3D{
                         Vector3f n = model.normals.get((int)face.normals.get(i+1)-1);
                         GL11.glNormal3f(n.x, n.y, n.z);
                     }
-                    v = model.vertices.get(vert2 - 1);
+                    v = model.verticies.get(vert2 - 1);
                     GL11.glVertex3f(v.x, v.y, v.z);
                     if(face.textureCoords.size()>0){
                         float[] uv = model.textures.get(face.textureCoords.get(i+2)-1);
@@ -622,7 +622,7 @@ public class Renderer3D{
                         Vector3f n = model.normals.get((int)face.normals.get(i+2)-1);
                         GL11.glNormal3f(n.x, n.y, n.z);
                     }
-                    v = model.vertices.get(vert3 - 1);
+                    v = model.verticies.get(vert3 - 1);
                     GL11.glVertex3f(v.x, v.y, v.z);
                 }
             }else{
@@ -636,7 +636,7 @@ public class Renderer3D{
                         Vector3f n = model.normals.get((int)face.normals.get(i)-1);
                         GL11.glNormal3f(n.x, n.y, n.z);
                     }
-                    Vector3f v = model.vertices.get(vert - 1);
+                    Vector3f v = model.verticies.get(vert - 1);
                     GL11.glVertex3f(v.x, v.y, v.z);
                 }
             }
