@@ -12,3 +12,4 @@ A fork of SimpleLibrary, containing bug fixes and some more specialized features
 - Added word wrapping methods
 ### 3D Rendering
 - Added basic .obj model rendering
+- Added a Depth buffer to framebuffers

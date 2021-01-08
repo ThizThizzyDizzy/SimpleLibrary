@@ -250,6 +250,9 @@ public class ImageStash{
         singleIntBuffer.clear();
         generateTextureNames(singleIntBuffer);
         int texName = singleIntBuffer.get(0);
+        singleIntBuffer.clear();
+        GL30.glGenRenderbuffers(singleIntBuffer);
+        int depthRenderBuffer = singleIntBuffer.get(0);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, texName);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MAG_FILTER, GL11.GL_NEAREST);
@@ -257,8 +260,15 @@ public class ImageStash{
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, GL11.GL_REPEAT);
         GL11.glTexImage2D(GL11.GL_TEXTURE_2D, 0, GL11.GL_RGBA, width, height, 0, GL11.GL_RGB, GL11.GL_UNSIGNED_BYTE, (ByteBuffer)null);
         GL30.glFramebufferTexture2D(GL30.GL_FRAMEBUFFER, GL30.GL_COLOR_ATTACHMENT0, GL11.GL_TEXTURE_2D, texName, 0);
+        GL30.glBindRenderbuffer(GL30.GL_RENDERBUFFER, depthRenderBuffer);
+        GL30.glRenderbufferStorage(GL30.GL_RENDERBUFFER, GL30.GL_DEPTH_COMPONENT, width, height);
+        GL30.glFramebufferRenderbuffer(GL30.GL_FRAMEBUFFER, GL30.GL_DEPTH_ATTACHMENT, GL30.GL_RENDERBUFFER, depthRenderBuffer);
         bufferToTextureMap.put(name, texName);
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, boundImage);
+        int fboStatus = GL30.glCheckFramebufferStatus(GL30.GL_FRAMEBUFFER);
+        if (fboStatus != GL30.GL_FRAMEBUFFER_COMPLETE) {
+            throw new AssertionError("Could not create FBO: " + fboStatus);
+        }
         GL30.glBindFramebuffer(GL30.GL_FRAMEBUFFER, boundBuffer);
     }
     public boolean hasBuffer(String name) {
