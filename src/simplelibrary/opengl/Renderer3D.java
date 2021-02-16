@@ -585,7 +585,7 @@ public class Renderer3D{
                 }
             }
             if(face.colorOverride!=null){
-                GL11.glColor4d(face.colorOverride.getRed()/255d, face.colorOverride.getGreen()/255d, face.colorOverride.getBlue()/255d, 1);
+                GL11.glColor4d(face.colorOverride.getRed()/255d, face.colorOverride.getGreen()/255d, face.colorOverride.getBlue()/255d, face.colorOverride.getAlpha()/255d);
             }
             oldTexture = texture;
             oldPolygonSize = polygonSize;

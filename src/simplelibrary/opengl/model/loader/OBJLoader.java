@@ -27,8 +27,9 @@ public class OBJLoader implements ModelLoader{
             }
             try{
                 if(line.startsWith("mtllib ")){
-                    expectArgs("OBJ", line,1);
-                    m.materials.addAll(loadMTL(adjacentProvider.getAdjacentFile(line.split(" ")[1]), adjacentProvider));
+                    if(line.split(" ").length==1)throw new IllegalArgumentException("Failed to parse OBJ command! Expected 1, found "+(line.split(" ").length-1)+" | "
+                         + " Full command: "+line);
+                    m.materials.addAll(loadMTL(adjacentProvider.getAdjacentFile(line.split(" ", 2)[1]), adjacentProvider));
                 }else if(line.startsWith("usemtl ")){
                     expectArgs("OBJ", line, 1);
                     currentMaterial = m.getMaterial(line.split(" ")[1]);
@@ -47,8 +48,12 @@ public class OBJLoader implements ModelLoader{
                     m.normals.add(new Vector3f(x,y,z));
                     expectArgs("OBJ", line, 3);
                 }else if(line.startsWith("vt ")){
-                    float u = Float.valueOf(line.split(" ")[1]);
-                    float v = Float.valueOf(line.split(" ")[2]);
+                    String vt1 = line.split(" ")[1];
+                    String vt2 = line.split(" ")[2];
+                    if(vt1.equals("nan"))vt1 = "0";
+                    if(vt2.equals("nan"))vt2 = "0";
+                    float u = Float.valueOf(vt1);
+                    float v = Float.valueOf(vt2);
                     m.textures.add(new float[]{u,v});
                 }else if(line.startsWith("o ")){
                     //TODO objects
