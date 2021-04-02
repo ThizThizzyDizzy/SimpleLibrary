@@ -453,6 +453,10 @@ public class GameHelper{
         glfwInit();
         glfwSetErrorCallback(errCall=GLFWErrorCallback.createPrint(System.err));
         glfwWindowHint(GLFW_RESIZABLE, GL11.GL_TRUE);
+        if(multisampleCount>0){
+            GLFW.glfwWindowHint(GLFW.GLFW_STENCIL_BITS, multisampleCount);
+            GLFW.glfwWindowHint(GLFW.GLFW_SAMPLES, multisampleCount);
+        }
         window = glfwCreateWindow(width, height, windowTitle, 0, 0);
         glfwShowWindow(window);
         hasColorChanged = true;
