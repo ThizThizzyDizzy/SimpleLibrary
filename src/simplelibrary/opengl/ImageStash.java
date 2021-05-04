@@ -1,7 +1,5 @@
 package simplelibrary.opengl;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
@@ -9,13 +7,16 @@ import java.nio.ByteOrder;
 import java.nio.IntBuffer;
 import java.util.ArrayList;
 import java.util.HashMap;
-import javax.imageio.ImageIO;
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL30;
+import org.lwjgl.stb.STBImage;
 import simplelibrary.Queue;
 import simplelibrary.Sys;
 import simplelibrary.error.ErrorCategory;
 import simplelibrary.error.ErrorLevel;
+import simplelibrary.image.Color;
+import simplelibrary.image.Image;
 import simplelibrary.texture.TexturePack;
 import simplelibrary.texture.TexturePackManager;
 /**
@@ -37,8 +38,8 @@ public class ImageStash{
     private final ArrayList<Integer> textureNameList = new ArrayList<>();
     private final IntBuffer singleIntBuffer = createDirectIntBuffer(1);
     private final ByteBuffer imageData = createDirectByteBuffer(16_777_216);
-    private final BufferedImage missingTextureImage;
-    private final HashMap<String, BufferedImage> multithreadedInserts = new HashMap<>();
+    private final Image missingTextureImage;
+    private final HashMap<String, Image> multithreadedInserts = new HashMap<>();
     private int boundImage;
     private final HashMap<String, Integer> bufferMap = new HashMap<>();
     private final ArrayList<Integer> buffers = new ArrayList<>();
@@ -56,14 +57,11 @@ public class ImageStash{
     }
     private Thread myThread;
     {
-        missingTextureImage = new BufferedImage(256, 256, 2);
-        Graphics g = missingTextureImage.getGraphics();
-        String text = "Missing Texture!";
-        char[] chars = new char[text.length()];
-        text.getChars(0, chars.length, chars, 0);
-        g.setColor(Color.BLACK);
-        g.drawChars(chars, 0, chars.length, 75, 127);
-        g.dispose();
+        missingTextureImage = new Image(2, 2);
+        missingTextureImage.setColor(0, 0, simplelibrary.image.Color.MAGENTA);
+        missingTextureImage.setColor(1, 1, simplelibrary.image.Color.MAGENTA);
+        missingTextureImage.setColor(1, 0, simplelibrary.image.Color.BLACK);
+        missingTextureImage.setColor(0, 1, simplelibrary.image.Color.BLACK);
         myThread = Thread.currentThread();
     }
     /**
@@ -107,7 +105,7 @@ public class ImageStash{
             }
         }
     }
-    public int allocateAndSetupTexture(BufferedImage image){
+    public int allocateAndSetupTexture(Image image){
         singleIntBuffer.clear();
         generateTextureNames(this.singleIntBuffer);
         int name = this.singleIntBuffer.get(0);
@@ -115,7 +113,7 @@ public class ImageStash{
         textureNameList.add(name);
         return name;
     }
-    private void setupTexture(BufferedImage image, int name){
+    private void setupTexture(Image image, int name){
         boundImage = name;
         GL11.glBindTexture(GL11.GL_TEXTURE_2D, name);
         GL11.glTexParameteri(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_MIN_FILTER, GL11.GL_NEAREST);
@@ -156,9 +154,28 @@ public class ImageStash{
             }
         }
     }
-    private BufferedImage readTextureImage(InputStream input) throws IOException{
-        BufferedImage image = ImageIO.read(input);
+    private Image readTextureImage(InputStream input) throws IOException{
+        ByteArrayOutputStream output = new ByteArrayOutputStream();
+        int b;
+        while((b = input.read())!=-1){
+            output.write(b);
+        }
         input.close();
+        output.close();
+        byte[] data = output.toByteArray();
+        ByteBuffer buffer = BufferUtils.createByteBuffer(data.length);
+        buffer.put(data);
+        buffer.flip();
+        IntBuffer width = BufferUtils.createIntBuffer(1);
+        IntBuffer height = BufferUtils.createIntBuffer(1);
+        ByteBuffer imageData = STBImage.stbi_load_from_memory(buffer, width, height, BufferUtils.createIntBuffer(1), 4);
+        if(imageData==null)throw new IOException("Failed to load image: "+STBImage.stbi_failure_reason());
+        Image image = new Image(width.get(0), height.get(0));
+        for(int y = 0; y<image.getHeight(); y++){
+            for(int x = 0; x<image.getWidth(); x++){
+                image.setRGB(x, y, Color.getRGB(imageData.get(), imageData.get(), imageData.get(), imageData.get()));
+            }
+        }
         return image;
     }
     /**
@@ -205,7 +222,7 @@ public class ImageStash{
         }
     }
     public boolean loadMultithreadedInsert(String filename){
-        BufferedImage img = multithreadedInserts.remove(filename);
+        Image img = multithreadedInserts.remove(filename);
         if(img!=null){
             textureMap.put(filename, allocateAndSetupTexture(img));
             return true;
@@ -222,7 +239,7 @@ public class ImageStash{
      * @param filename
      * @param image 
      */
-    public void multithreadedInsert(String filename, BufferedImage image){
+    public void multithreadedInsert(String filename, Image image){
         multithreadedInserts.put(filename, image);
     }
     public int getBuffer(String name){

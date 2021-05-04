@@ -1,10 +1,10 @@
 package simplelibrary.opengl.model.loader;
-import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import simplelibrary.image.Color;
 import simplelibrary.opengl.model.Face;
 import simplelibrary.opengl.model.Material;
 import simplelibrary.opengl.model.Model;

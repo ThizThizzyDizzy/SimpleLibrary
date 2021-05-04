@@ -1,9 +1,6 @@
 package simplelibrary.opengl.gui.components;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Point;
-import java.awt.Rectangle;
 import org.lwjgl.opengl.GL11;
+import simplelibrary.image.Color;
 import simplelibrary.opengl.gui.Menu;
 /**
  * A component for a SimpleLibrary OpenGL Menu.
@@ -47,8 +44,8 @@ public abstract class MenuComponent extends Menu{
      */
     public double y;
     public Color tooltipBackgroundColor = Color.WHITE;
-    public Color tooltipTextColor = Color.black;
-    public Color tooltipBorderColor = Color.black;
+    public Color tooltipTextColor = Color.BLACK;
+    public Color tooltipBorderColor = Color.BLACK;
     public String tooltip;
     /**
      * Creates a new component.  Note:  This is an abstract class.
@@ -100,27 +97,13 @@ public abstract class MenuComponent extends Menu{
         this.foregroundColor = color;
         return this;
     }
-    public void setLocation(Point p) {
-        x = p.x;
-        y = p.y;
-    }
     public void setLocation(int x, int y) {
         this.x = x;
         this.y = y;
     }
-    public void setSize(Dimension d) {
-        width = d.width;
-        height = d.height;
-    }
     public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
-    }
-    public void setBounds(Rectangle r) {
-        x = r.x;
-        y = r.y;
-        width = r.width;
-        height = r.height;
     }
     public void setBounds(int x, int y, int width, int height) {
         this.x = x;

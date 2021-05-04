@@ -1,11 +1,11 @@
 package simplelibrary.opengl.gui.components;
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import org.lwjgl.opengl.GL11;
 import simplelibrary.game.GameHelper;
+import simplelibrary.image.Color;
 import simplelibrary.opengl.ImageStash;
+import simplelibrary.opengl.gui.ActionEvent;
+import simplelibrary.opengl.gui.ActionListener;
 public class MenuComponentButton extends MenuComponent implements ActionListener{
     public String label;
     public boolean enabled;
@@ -90,6 +90,7 @@ public class MenuComponentButton extends MenuComponent implements ActionListener
     public void removeActionListener(ActionListener a){
         listeners.remove(a);
     }
+    @Override
     public void actionPerformed(ActionEvent e){
         for(ActionListener l : listeners){
             gui.addPendingAction(l, e);

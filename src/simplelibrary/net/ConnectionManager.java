@@ -1,6 +1,4 @@
 package simplelibrary.net;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import simplelibrary.encryption.Encryption;
 import simplelibrary.net.authentication.Authentication;
 import simplelibrary.net.authentication.Authenticator;
@@ -1241,8 +1239,8 @@ public class ConnectionManager implements AutoCloseable{
         private final String keycode;
         MulticastSocket c;
         public final ArrayList<ServerData> servers = new ArrayList<ServerData>();
-        private final ActionListener listener;
-        public Discoverer(String keycode, int port, ActionListener listener) throws IOException{
+        private final DiscoveryListener listener;
+        public Discoverer(String keycode, int port, DiscoveryListener listener) throws IOException{
             this.keycode = keycode;
             this.listener = listener;
             c = new MulticastSocket(port);
@@ -1290,7 +1288,7 @@ public class ConnectionManager implements AutoCloseable{
                     }
                 }
                 servers.add(new ServerData(ip, port, time, message));
-                if(listener!=null) listener.actionPerformed(new ActionEvent(this, 0, ip+":"+port+(message==null?"":" "+message)));
+                if(listener!=null)listener.discovered(this, ip, port, message);
             }
         }
         public static class ServerData{
@@ -1308,5 +1306,8 @@ public class ConnectionManager implements AutoCloseable{
                 return System.currentTimeMillis()-origin;
             }
         }
+    }
+    public static interface DiscoveryListener{
+        public void discovered(Discoverer discoverer, String ip, int port, String message);
     }
 }

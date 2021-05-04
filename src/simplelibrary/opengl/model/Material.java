@@ -1,5 +1,5 @@
 package simplelibrary.opengl.model;
-import java.awt.Color;
+import simplelibrary.image.Color;
 import simplelibrary.opengl.ImageStash;
 public class Material{
     public final String name;

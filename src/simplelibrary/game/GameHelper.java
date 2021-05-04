@@ -9,6 +9,7 @@ import org.lwjgl.opengl.GL11;
 import simplelibrary.Sys;
 import simplelibrary.error.ErrorCategory;
 import simplelibrary.error.ErrorLevel;
+import simplelibrary.image.Color;
 import simplelibrary.opengl.ImageStash;
 import simplelibrary.opengl.Renderer2D;
 import simplelibrary.opengl.gui.GUI;
@@ -228,7 +229,7 @@ public class GameHelper{
     private String windowTitle;
     public boolean running = true;
     private long lastTime;
-    private java.awt.Color background;
+    private simplelibrary.image.Color background;
     private float frameOfView = 45;
     private int lastWidth;
     private int lastHeight;
@@ -266,9 +267,6 @@ public class GameHelper{
     private GLFWErrorCallback errCall;
     private long window;
     //</editor-fold>
-    public void setDisplaySize(java.awt.Dimension size){
-        setDisplaySize(size.width, size.height);
-    }
     public void setDisplaySize(int displayWidth, int displayHeight){
         width = displayWidth;
         height = displayHeight;
@@ -307,7 +305,7 @@ public class GameHelper{
         }
         renderInitMethod = method;
     }
-    public void setBackground(java.awt.Color background){
+    public void setBackground(Color background){
         this.background = background;
         hasColorChanged = true;
     }
@@ -497,7 +495,7 @@ public class GameHelper{
         glfwSwapBuffers(window);
     }
     public void refreshBackgroundColor(){
-        if(background==null) background = java.awt.Color.BLACK;
+        if(background==null) background = simplelibrary.image.Color.BLACK;
         GL11.glClearColor(background.getRed()/255F, background.getGreen()/255F, background.getBlue()/255F, background.getAlpha()/255F);
         hasColorChanged = false;
     }

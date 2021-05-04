@@ -1,6 +1,4 @@
 package simplelibrary.opengl.gui;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import org.lwjgl.glfw.GLFW;
 import simplelibrary.Queue;

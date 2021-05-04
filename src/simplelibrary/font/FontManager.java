@@ -1,7 +1,4 @@
 package simplelibrary.font;
-import java.awt.Color;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -11,6 +8,7 @@ import simplelibrary.Sys;
 import simplelibrary.config.Config;
 import simplelibrary.error.ErrorCategory;
 import simplelibrary.error.ErrorLevel;
+import simplelibrary.image.Image;
 import simplelibrary.opengl.ImageStash;
 public class FontManager {
     private static final HashMap<String, Object> fontImages = new HashMap<>();
@@ -21,65 +19,6 @@ public class FontManager {
     private static int[] currentCharLengths = new int[0x1_0000];
     private static int currentCharHeight;
     private static String currentFontType;
-    public static BufferedImage generateFontTexture(boolean full){
-        if(full){
-            BufferedImage img = new BufferedImage(8_192, 8_192, 6);
-            for(int i = 0; i<8_192; i++){
-                for(int j = 0; j<8_192; j++){
-                    img.setRGB(i, j, 0xFFFF_FFFF);
-                }
-            }
-            Graphics2D g = (Graphics2D)img.getGraphics();
-            char[] chars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-            g.setColor(Color.BLACK);
-            for(int i = 0; i<=0x10; i++){
-                for(int j = 0; j<=0x1-0; j++){
-                    for(int k = 0; k<=0x10; k++){
-                        for(int l = 0; l<=0x10; l++){
-                            String hex1 = ""+chars[i]+chars[j];
-                            String hex2 = ""+chars[k]+chars[l];
-                            int down = i*0x10+j;
-                            int across = k*0x10+l;
-                            down*=32;
-                            across*=32;
-                            g.drawRect(across, down, 32, 1);
-                            g.drawRect(across, down, 1, 32);
-                            g.drawString(hex1, across+2, down+16);
-                            g.drawString(hex2, across+2, down+32);
-                            if(!(""+(char)(i*0x1000+j*0x100+k*0x10+l)).trim().isEmpty()){
-                                g.drawString(""+(char)(i*0x1000+j*0x100+k*0x10+l), across+18, down+24);
-                            }
-                        }
-                    }
-                }
-            }
-            g.dispose();
-            return img;
-        }else{
-            BufferedImage img = new BufferedImage(512, 512, 6);
-            for(int i = 0; i<512; i++){
-                for(int j = 0; j<512; j++){
-                    img.setRGB(i, j, 0xFFFF_FFFF);
-                }
-            }
-            Graphics2D g = (Graphics2D)img.getGraphics();
-            char[] chars = new char[]{'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-            g.setColor(Color.BLACK);
-            for(int i = 0; i<256; i++){
-                int down = (int)Math.floor(i/16D);
-                int across = i%16;
-                String hex = ""+chars[down]+chars[across];
-                down*=32;
-                across*=32;
-                g.drawRect(across, down, 32, 1);
-                g.drawRect(across, down, 1, 32);
-                g.drawString(hex, across+4, down+16);
-                g.drawString(""+(char)i, across+4, down+28);
-            }
-            g.dispose();
-            return img;
-        }
-    }
     public static void setFont(String fontName){
         if(!fontImages.containsKey(fontName)){
             throw new IllegalArgumentException("No font has been registered at "+fontName+"!");
@@ -188,8 +127,8 @@ public class FontManager {
     public static int getFontImage(){
         return ImageStash.instance.getTexture((String)currentText);
     }
-    public static BufferedImage getCharacterImage(int character){
-        BufferedImage img = (BufferedImage)currentText;
+    public static Image getCharacterImage(int character){
+        Image img = (Image)currentText;
         double[] location = getTextureLocationForChar(character);
         int imgWidth = img.getWidth();
         int imgHeight = img.getHeight();
