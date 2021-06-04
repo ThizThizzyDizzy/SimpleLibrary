@@ -133,8 +133,8 @@ public class Song{
         int size = buffers.size();
         if(size==0) return 0;
         if(size==1) return 5000;//5s
-        if(size==2) return 30000;//30s
-        return (size-2)*60000+30000;//30s+60s/seg
+        if(size==2) return 1000;//30s
+        return (size-2)*1000+1000;//30s+60s/seg
     }
     private synchronized void loadNextSegment() throws IOException{
         if(in==null){
@@ -154,7 +154,7 @@ public class Song{
             }
         }
         //Read segment
-        byte[] data = new byte[sampleRate*(sampleSize/8)*channelCount*(buffers.size()==1?25:60)];//Read 25s for second sample, 60s for the rest
+        byte[] data = new byte[sampleRate*(sampleSize/8)*channelCount*(buffers.size()==1?1:1)];//Read 25s for second sample, 60s for the rest
         int pos = 0;
         while(pos<data.length){
             int val = in.read(data, pos, data.length-pos);
